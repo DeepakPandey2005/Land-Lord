@@ -1,64 +1,126 @@
-const model = require("../modal/record");
-const Record = model.recordModel;
-
-
-
 const multer = require("multer");
+const Record = require("../modal/record").recordModel; // Ensure correct path and model usage
 
 // Multer Storage Configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    return cb(null, "./uploads"); // Save files to ./uploads
+    cb(null, "./uploads"); // Save files to ./uploads
   },
   filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}-${file.originalname}`); // Unique filename with timestamp
+    cb(null, `${Date.now()}-${file.originalname}`); // Unique filename with timestamp
   },
 });
 
 exports.upload = multer({ storage });
 
+// Middleware to handle image upload and data saving
+exports.imgMiddleware = async (req, res) => {
+  try {
+    console.log("API reached");
+    console.log(req.body); // Log form data
+    console.log(req.files); // Log uploaded files
 
+    const { body, files } = req;
 
+    if (!files || files.length < 3) {
+      return res.status(400).send("Please upload all 3 required files.");
+    }
 
-exports.imgMiddleware = (req, res) => {
-  console.log("API reached");
-  console.log(req.body)
-  console.log(req.files); // Array of uploaded files
+    // Map files to retrieve important data
+    const [propertyPaper, adharCard, panCard] = files.map((file) => ({
+      path: file.path,
+      name: file.originalname,
+    }));
 
+    // Create a new record with form data and file details
+    const record = new Record({
+      ...body,
+      documents: {
+        propertyPaper,
+        adharCard,
+        panCard,
+      },
+    });
 
-  // code to store the data in the database
-//   try {
-//     const record = new Record(req.body);
-//     record.save();
-//     res.status(201).json(record);
-//   } catch (err) {
-//     res.sendStatus(400);
-//   }
-// };
+    // Save to MongoDB
+    await record.save();
 
-  if (req.files && req.files.length > 0) {
-    const fileLinks = req.files.map(
-      (file) => `<img src="/uploads/${file.filename}" alt="img" />`
-    );
-    res.send(fileLinks.join(" ")); // Display all uploaded files as images
-  } else {
-    res.status(400).send("No files uploaded.");
+    res.status(201).json({ message: "Record created successfully", record });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(400)
+      .json({ message: "Failed to save record", error: err.message });
+  }
+  console.log("data inserted succesfully");
+};
+
+// Additional CRUD Operations
+
+// Get a specific record
+exports.get = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const record = await Record.findById(id);
+    if (!record) {
+      return res.status(404).json({ message: "Record not found" });
+    }
+    res.json(record);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error fetching record", error: err.message });
   }
 };
 
-exports.get = (req, res) => {
-  // const id=req.params.id
-  res.json({ type: "get" });
+// Get all records
+exports.getAll = async (req, res) => {
+  try {
+    const records = await Record.find();
+    res.json(records);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error fetching records", error: err.message });
+  }
 };
 
-exports.getAll = (req, res) => {
-  res.json({ type: "get" });
+// Update a specific record
+exports.update = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedData = req.body;
+
+    const updatedRecord = await Record.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
+
+    if (!updatedRecord) {
+      return res.status(404).json({ message: "Record not found" });
+    }
+
+    res.json({ message: "Record updated successfully", updatedRecord });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error updating record", error: err.message });
+  }
 };
 
+// Delete a specific record
+exports.deleteRecord = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedRecord = await Record.findByIdAndDelete(id);
 
-exports.update = (req, res) => {
-  res.json({ type: "patch" });
-};
-exports.deleteRecord = (req, res) => {
-  res.json({ type: "delete" });
+    if (!deletedRecord) {
+      return res.status(404).json({ message: "Record not found" });
+    }
+
+    res.json({ message: "Record deleted successfully" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error deleting record", error: err.message });
+  }
 };

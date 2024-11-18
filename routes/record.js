@@ -3,13 +3,11 @@ const router = express.Router();
 const {
   get,
   getAll,
-  create,
   update,
   deleteRecord,
   imgMiddleware,
-  upload
+  upload,
 } = require("../controller/record");
-
 
 // Updated Routes
 router.get("/", getAll);

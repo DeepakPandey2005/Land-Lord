@@ -18,9 +18,7 @@ const recordSchema = new Schema({
   title: String,
   totalPaid: Number,
   totalToBePaid: Number,
-  propertyPaper: Object,
-  adharCard: Object,
-  panCard: Object,
+  documents: Object,
 });
 
 exports.recordModel = mongoose.model("records", recordSchema);
