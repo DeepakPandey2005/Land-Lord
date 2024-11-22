@@ -12,8 +12,8 @@ const authRouter=require('./routes/auth.js');
 const ensureAuthenticated = require("./authMiddleware/checkAuth.js");
 
 server.use(cors());
-server.use(bodyParser.json())
 server.use(express.json());
+server.use(bodyParser.json())
 server.use(express.urlencoded({ extended: false }));
 
 server.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));

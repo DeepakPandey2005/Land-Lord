@@ -6,7 +6,7 @@ const recordSchema = new Schema({
   longitude: Number,
   additionalAddress: String,
   city: String,
-  postcode: Number,
+  postcode: String,
   loan: String,
   nominee: String,
   nomineeDOB: String,
