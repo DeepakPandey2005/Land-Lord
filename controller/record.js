@@ -1,6 +1,6 @@
 const multer = require("multer");
 const Record = require("../modal/record").recordModel; // Ensure correct path and model usage
-
+const dummyRecord = require("../modal/record").dummyModel;
 // Multer Storage Configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -13,7 +13,6 @@ const storage = multer.diskStorage({
 
 exports.upload = multer({ storage });
 
-// Middleware to handle image upload and data saving
 exports.imgMiddleware = async (req, res) => {
   try {
     console.log("API reached");
@@ -58,25 +57,11 @@ exports.imgMiddleware = async (req, res) => {
 // Additional CRUD Operations
 
 // Get a specific record
-exports.get = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const record = await Record.findById(id);
-    if (!record) {
-      return res.status(404).json({ message: "Record not found" });
-    }
-    res.json(record);
-  } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Error fetching record", error: err.message });
-  }
-};
-
 // Get all records
 exports.getAll = async (req, res) => {
+  const email=req.params.email;
   try {
-    const records = await Record.find();
+    const records = await Record.find({email:email});
     res.json(records);
   } catch (err) {
     res
@@ -122,5 +107,14 @@ exports.deleteRecord = async (req, res) => {
     res
       .status(500)
       .json({ message: "Error deleting record", error: err.message });
+  }
+};
+
+exports.getDummyRecords = async (req, res) => {
+  try {
+    const record = await dummyRecord.find();
+    res.status(200).json(record);
+  } catch (err) {
+    res.status(501).json(err);
   }
 };

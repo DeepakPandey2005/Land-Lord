@@ -1,0 +1,158 @@
+
+   Hello mr Sandy ,follow the instructions careFully ! and ignore if you already know this ,Because you so clever extra ordinary fantastic and mind blowing ! 
+
+1 in command terminal enter "mongosh"
+2 write - show dbs  --now you can see all the dbs which are present
+3 write -use landlord 
+4 write -- show collection 
+5 write -- db.createCollection('dummys')   -- for creating the database
+now paste this data 
+
+
+db.dummys.insertMany([
+  {
+    "cityName": "Mumbai",
+    "propertyName": "Green Meadows Apartment",
+    "address": "Borivali West",
+    "latitude": 19.229,
+    "longitude": 72.856,
+    "propertyType": "Residential",
+    "postCode": 400091,
+    "image": "https://plus.unsplash.com/premium_photo-1724641367976-6aa23a0b5a46?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Pune",
+    "propertyName": "Sunny Side Villa",
+    "address": "Kothrud",
+    "latitude": 18.5074,
+    "longitude": 73.8077,
+    "propertyType": "Residential",
+    "postCode": 411038,
+    "image": "https://plus.unsplash.com/premium_photo-1724659217647-4bfdba75e5a6?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Thane",
+    "propertyName": "Riverside Residency",
+    "address": "Majiwada",
+    "latitude": 19.2093,
+    "longitude": 72.9721,
+    "propertyType": "Residential",
+    "postCode": 400601,
+    "image": "https://images.unsplash.com/photo-1695059963367-3342c15999d7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Nagpur",
+    "propertyName": "Golden Acres",
+    "address": "Manewada",
+    "latitude": 21.1213,
+    "longitude": 79.0852,
+    "propertyType": "Residential",
+    "postCode": 440027,
+    "image": "https://images.unsplash.com/photo-1596274646650-f1d9e226ad2f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Nashik",
+    "propertyName": "Hilltop Orchard",
+    "address": "Deolali",
+    "latitude": 19.9444,
+    "longitude": 73.8008,
+    "propertyType": "Agricultural",
+    "postCode": 422101,
+    "image": "https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Aurangabad",
+    "propertyName": "Shiv Residency",
+    "address": "Shahgunj",
+    "latitude": 19.8804,
+    "longitude": 75.3422,
+    "propertyType": "Residential",
+    "postCode": 431001,
+    "image": "https://images.unsplash.com/photo-1506706435692-290e0c5b4505?q=80&w=664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Kolhapur",
+    "propertyName": "Mangalmurti Plaza",
+    "address": "Rajaram Road",
+    "latitude": 16.6906,
+    "longitude": 74.2433,
+    "propertyType": "Commercial",
+    "postCode": 416008,
+    "image": "https://images.unsplash.com/photo-1656646424531-cc9041d3e5ca?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Solapur",
+    "propertyName": "Siddharth Villa",
+    "address": "Siddheshwar Peth",
+    "latitude": 17.6599,
+    "longitude": 75.9064,
+    "propertyType": "Residential",
+    "postCode": 413001,
+    "image": "https://plus.unsplash.com/premium_photo-1714270097026-cbeade82cafb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Satara",
+    "propertyName": "Mountain View Land",
+    "address": "Mahabaleshwar Road",
+    "latitude": 17.9241,
+    "longitude": 73.6655,
+    "propertyType": "Agricultural",
+    "postCode": 415002,
+    "image": "https://images.unsplash.com/photo-1711397651462-3b2a22f5cfc8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Ratnagiri",
+    "propertyName": "Seaside Plots",
+    "address": "Ganpatipule Road",
+    "latitude": 17.1509,
+    "longitude": 73.3294,
+    "propertyType": "Residential",
+    "postCode": 415612,
+    "image": "https://plus.unsplash.com/premium_photo-1712083524480-b508a0e4f956?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Mumbai",
+    "propertyName": "Lotus Residency",
+    "address": "Goregaon East",
+    "latitude": 19.1551,
+    "longitude": 72.8702,
+    "propertyType": "Residential",
+    "postCode": 400063,
+    "image": "https://plus.unsplash.com/premium_photo-1714270097026-cbeade82cafb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "cityName": "Pune",
+    "propertyName": "Silver Spring Commercial",
+    "address": "Baner",
+    "latitude": 18.5639,
+    "longitude": 73.7799,
+    "propertyType": "Commercial",
+    "postCode": 411045,
+    "image": "https://images.unsplash.com/photo-1601030617394-3cf5241c3109?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }]
+)
+ contact mr Deepak if you get any type of the error. 
+
+ now to make a update in the property detaiils 
+
+add a update button in which onClick =()=>{ handelUpdate(obj._id)}
+
+make a form in which the data will be shown and we can make change on that existing data 
+then store that data in the formData and pass form data to the api 
+
+const handleUpdate=async(id)=>{
+  try {
+    const token = localStorage.getItem("token"); // Retrieve the JWT token from localStorage
+    await axios.patch(
+      `http://localhost:8080/records/${id}`,formData,{
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass the token in the Authorization header
+        },
+      }
+    );
+    handleSuccess('Record modified SucessFully')
+    navigate('/home')
+  } catch (error) {
+    console.error("Error modifying the record:", error);
+  }
+}
