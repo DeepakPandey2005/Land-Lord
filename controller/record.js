@@ -15,10 +15,6 @@ exports.upload = multer({ storage });
 
 exports.imgMiddleware = async (req, res) => {
   try {
-    console.log("API reached");
-    console.log(req.body); // Log form data
-    console.log(req.files); // Log uploaded files
-
     const { body, files } = req;
 
     if (!files || files.length < 3) {
@@ -51,7 +47,6 @@ exports.imgMiddleware = async (req, res) => {
       .status(400)
       .json({ message: "Failed to save record", error: err.message });
   }
-  console.log("data inserted succesfully");
 };
 
 // Additional CRUD Operations
