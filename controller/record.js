@@ -114,7 +114,9 @@ exports.getDummyRecords = async (req, res) => {
   try {
     const record = await dummyRecord.find();
     res.status(200).json(record);
+    console.log(record)
   } catch (err) {
     res.status(501).json(err);
   }
+  
 };
