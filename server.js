@@ -15,7 +15,6 @@ server.use(express.json());
 server.use(bodyParser.json());
 server.use(express.urlencoded({ extended: false }));
 
-server.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
 server.use("/uploads", express.static(path.join(__dirname, "uploads")));
 main().catch((err) => console.log(err));
 async function main() {
@@ -29,7 +28,3 @@ server.use("/records", ensureAuthenticated, router);
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-server.use('*',(req,res)=>{
-  res.sendFile(path.resolve(__dirname,process.env.PUBLIC_DIR,'index.html'))
-})
