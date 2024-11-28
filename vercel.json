@@ -1,32 +1,30 @@
-{
-    "version": 2,
-    "builds": [
-      {
-        "src": "server.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "dist/**/*",
-        "use": "@vercel/static"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/auth.*",
-        "dest": "server.js"
-      },
-      {
-        "src": "/records.*",
-        "dest": "server.js"
-      },
-      {
-        "src": "/uploads/(.*)",
-        "dest": "/uploads/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/dist/index.html"
-      }
-    ]
+ {
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/auth/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/records/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/index.html"
+    }
+  ]
   }
-  
