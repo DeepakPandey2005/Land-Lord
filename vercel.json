@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "server.js",
@@ -7,18 +6,6 @@
     }
   ],
   "routes": [
-    {
-      "src": "/auth/(.*)",  
-      "dest": "server.js"
-    },
-    {
-      "src": "/records/(.*)",  
-      "dest": "server.js"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/uploads/$1"
-    },
     {
       "src": "/(.*)",  
       "dest": "server.js"
