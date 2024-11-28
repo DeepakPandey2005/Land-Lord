@@ -31,8 +31,6 @@ server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
-// here the react file will be use after npm run build for using the router correctly
-
-// serveruse('*',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,process.env.PUBLIC_DIR,'index.html'))
-// })
+server.use('*',(req,res)=>{
+  res.sendFile(path.resolve(__dirname,process.env.PUBLIC_DIR,'index.html'))
+})
