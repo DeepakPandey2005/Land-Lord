@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "server.js",
@@ -11,11 +12,7 @@
   ],
   "routes": [
     {
-      "src": "/auth/login",  
-      "dest": "server.js"
-    },
-    {
-      "src": "/auth/signup",  
+      "src": "/auth/(.*)",  
       "dest": "server.js"
     },
     {
@@ -33,6 +30,22 @@
     {
       "src": "/(.*)",  
       "dest": "server.js"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/auth/(.*)",  
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, PATCH" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    },
+    {
+      "source": "/(.*)",  
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" }
+      ]
     }
   ]
 }
