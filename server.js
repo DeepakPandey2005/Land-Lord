@@ -15,22 +15,6 @@ server.use(express.json());
 server.use(bodyParser.json());
 server.use(express.urlencoded({ extended: false }));
 
-server.use(
-  cors({
-    origin: "https://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-server.use((req, res, next) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-  next();
-});
-
-
-
-
-
 server.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
 main().catch((err) => console.log(err));
 async function main() {

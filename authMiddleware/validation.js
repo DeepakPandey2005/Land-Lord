@@ -40,7 +40,7 @@ const signupValidation = (req, res, next) => {
     // Handle unexpected server errors
     res.status(500).json({
       success: false,
-      message: "Internal Server Error",
+      message: "Internal Server Error !",
     });
   }
 };

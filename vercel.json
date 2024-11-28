@@ -8,7 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/auth/(.*)",  
+      "src": "/auth/signup",  
+      "dest": "server.js"
+    },
+    {
+      "src": "/auth/login",  
       "dest": "server.js"
     },
     {
