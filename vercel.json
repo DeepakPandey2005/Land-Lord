@@ -8,24 +8,16 @@
   ],
   "routes": [
     {
-      "src": "/auth/signup",  
-      "dest": "server.js"
-    },
-    {
-      "src": "/auth/login",  
-      "dest": "server.js"
-    },
-    {
-      "src": "/records/(.*)",  
-      "dest": "server.js"
-    },
-    {
-      "src": "/uploads/(.*)",  
+      "src": "/uploads/(.*)",
       "dest": "/uploads/$1"
     },
     {
-      "src": "/(.*)",  
-      "dest": "server.js"
+      "src": "/auth/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/records/(.*)",
+      "dest": "/server.js"
     }
   ]
 }
