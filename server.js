@@ -24,7 +24,12 @@ async function main() {
 
 server.use("/auth", authRouter);
 server.use("/records", ensureAuthenticated, router);
-
+server.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is up and running!",
+  });
+});
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
