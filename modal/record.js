@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const recordSchema = new Schema({
-  email: { type: String, unique: true, required: true },
+  email: { type: String, unique: false , required: true },
   latitude: Number,
   longitude: Number,
   additionalAddress: String,
@@ -21,7 +21,6 @@ const recordSchema = new Schema({
   totalToBePaid: Number,
   documents: Object,
 });
-
 const dummySchema = new Schema({
   cityName: String,
   propertyName: String,
