@@ -32,5 +32,16 @@ const dummySchema = new Schema({
   postCode: String,
   Image: String,
 });
+
+const sellSchema = new Schema({
+  cityName: String,
+  address: String,
+  ownerName: String,
+  postCode: String,
+  contactNo: Number,
+  propertyType: String,
+  image: Object,
+})
 exports.recordModel = mongoose.model("records", recordSchema);
 exports.dummyModel = mongoose.model("dummys", dummySchema);
+exports.sellModel = mongoose.model("selldata", sellSchema)

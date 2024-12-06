@@ -1,6 +1,7 @@
 const multer = require("multer");
 const Record = require("../modal/record").recordModel; // Ensure correct path and model usage
 const dummyRecord = require("../modal/record").dummyModel;
+const sellRecord = require("../modal/record").sellModel
 // Multer Storage Configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -108,6 +109,48 @@ exports.deleteRecord = async (req, res) => {
 exports.getDummyRecords = async (req, res) => {
   try {
     const record = await dummyRecord.find();
+    res.status(200).json(record);
+    console.log(record)
+  } catch (err) {
+    res.status(501).json(err);
+  }
+  
+};
+
+exports.sellData = async (req, res) => {
+  try {
+    const { body } = req;
+    const file = req.file; 
+
+    if (!file) {
+      return res.status(400).send("Please upload the required property image.");
+    }
+
+  
+    const propertyImg = {
+      path: file.path,
+      name: file.originalname,
+    };
+
+
+    const record = new sellRecord({
+      ...body,
+      propertyImg, 
+    });
+
+    await record.save();
+
+    res.status(201).json({ message: "Sell record created successfully", record });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: "Failed to save sell record", error: err.message });
+  }
+};
+
+
+exports.getSellData = async (req, res) => {
+  try {
+    const record = await sellRecord.find();
     res.status(200).json(record);
     console.log(record)
   } catch (err) {
