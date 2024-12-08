@@ -92,6 +92,6 @@ const workerSchema= new Schema({
   },
 })
 exports.recordModel = mongoose.model("record", recordSchema);
-exports.dummyModel = mongoose.model("dummy", dummySchema);
+exports.dummyModel = mongoose.model("dummys", dummySchema);
 exports.sellModel = mongoose.model("selldata", sellSchema);
 exports.workerModel = mongoose.model("worker", workerSchema);
