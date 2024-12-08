@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const recordSchema = new Schema({
-  email: { type: String, unique: true, required: true },
+  email: { type: String,required: true },
   latitude: Number,
   longitude: Number,
   additionalAddress: String,
@@ -34,6 +34,7 @@ const dummySchema = new Schema({
 });
 
 const sellSchema = new Schema({
+  email:String,
   latitude: Number,
   longitude: Number,
   additionalAddress: String,
@@ -48,6 +49,10 @@ const sellSchema = new Schema({
   terms: String,
   title: String,
 });
+const workerSchema= new Schema({
+
+})
 exports.recordModel = mongoose.model("records", recordSchema);
 exports.dummyModel = mongoose.model("dummys", dummySchema);
 exports.sellModel = mongoose.model("selldata", sellSchema);
+exports.workerModel = mongoose.model("workers", workerSchema);

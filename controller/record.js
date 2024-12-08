@@ -2,6 +2,8 @@ const multer = require("multer");
 const Record = require("../modal/record").recordModel; // Ensure correct path and model usage
 const dummyRecord = require("../modal/record").dummyModel;
 const sellRecord = require("../modal/record").sellModel;
+const workerRecord = require("../modal/record").workerModel;
+
 
 // Multer Storage Configuration
 const storage = multer.diskStorage({
@@ -111,7 +113,6 @@ exports.getDummyRecords = async (req, res) => {
   try {
     const record = await dummyRecord.find();
     res.status(200).json(record);
-    console.log(record);
   } catch (err) {
     res.status(501).json(err);
   }
@@ -144,22 +145,31 @@ exports.sellData = async (req, res) => {
 };
 
 exports.getSellData = async (req, res) => {
+  const email=req.params.email
   try {
-    const records = await sellRecord.find();
+    const records = await sellRecord.find({email:email});
 
     if (!records || records.length === 0) {
       return res.status(404).json({ message: "No sell records found" });
     }
 
     res.status(200).json(records);
-    console.log("Sell Records Retrieved:", records);
   } catch (err) {
     console.error("Error fetching sell records:", err);
     res
       .status(500)
       .json({ message: "Error fetching sell records", error: err.message });
   }
-};
+}
+exports.getAllSellData = async (req, res) => {
+  try {
+    const records = await sellRecord.find();
+    res.status(200).json(records);
+  } catch (err) {
+    console.error("Error fetching sell records:", err);
+    res.status(500).json({ message: "Error fetching sell records", error: err.message });
+  }
+}
 
 exports.deleteSellRecord = async (req, res) => {
   try {
@@ -180,4 +190,13 @@ exports.deleteSellRecord = async (req, res) => {
       .status(500)
       .json({ message: "Error deleting sell record", error: err.message });
   }
-};
+}
+  exports.getWorkerData=async(req,res)=>{
+try{
+const records= await workerRecord.find()
+res.status(201).json(records) 
+}catch(err){
+  res
+  .status(500)
+  .json({ message: "Error fetching record", error: err.message });
+}}

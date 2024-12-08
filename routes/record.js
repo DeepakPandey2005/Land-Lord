@@ -9,17 +9,20 @@ const {
   getDummyRecords,
   sellData,
   getSellData,
+  getAllSellData,
   deleteSellRecord,
+  getWorkerData
 } = require("../controller/record");
 
 router.get("/dummys", getDummyRecords);
+router.get("/workers", getWorkerData);
 router.get("/:email", getAll);
-// Handle multiple file uploads for the 'profile' field (up to 5 files)
 router.post("/", upload.array("avatar", 3), imgMiddleware);
 router.patch("/:id", update);
 router.delete("/:id", deleteRecord);
 router.delete("/sell/:id", deleteSellRecord);
 
 router.post("/sell", sellData);
-router.get("/sell/records", getSellData);
+router.get("/sell/records/:email", getSellData);
+router.get("/sell/records", getAllSellData);
 exports.router = router;
