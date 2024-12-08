@@ -34,14 +34,20 @@ const dummySchema = new Schema({
 });
 
 const sellSchema = new Schema({
-  cityName: String,
-  address: String,
+  latitude: Number,
+  longitude: Number,
+  additionalAddress: String,
+  city: String,
+  postcode: String,
+  nominee: String,
+  nomineeDOB: String,
+  nomineeName: String,
   ownerName: String,
-  postCode: String,
-  contactNo: Number,
   propertyType: String,
-  image: Object,
-})
+  purchaseDate: String,
+  terms: String,
+  title: String,
+});
 exports.recordModel = mongoose.model("records", recordSchema);
 exports.dummyModel = mongoose.model("dummys", dummySchema);
-exports.sellModel = mongoose.model("selldata", sellSchema)
+exports.sellModel = mongoose.model("selldata", sellSchema);

@@ -8,7 +8,8 @@ const {
   upload,
   getDummyRecords,
   sellData,
-  getSellData
+  getSellData,
+  deleteSellRecord,
 } = require("../controller/record");
 
 router.get("/dummys", getDummyRecords);
@@ -17,6 +18,8 @@ router.get("/:email", getAll);
 router.post("/", upload.array("avatar", 3), imgMiddleware);
 router.patch("/:id", update);
 router.delete("/:id", deleteRecord);
-router.post("/sell",sellData);
-router.get("/getsell",getSellData)
+router.delete("/sell/:id", deleteSellRecord);
+
+router.post("/sell", sellData);
+router.get("/sell/records", getSellData);
 exports.router = router;
