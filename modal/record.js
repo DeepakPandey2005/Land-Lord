@@ -50,9 +50,49 @@ const sellSchema = new Schema({
   title: String,
 });
 const workerSchema= new Schema({
-
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  designation: {
+    type: String,
+    required: true,
+  },
+  experience_years: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  rating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
+  },
+  per_hour_fees: {
+    type: Number,
+    required: true,
+    min: 1000,
+    max: 2000,
+  },
+  contact_no: {
+    type: String,
+    required: true,
+    match: /^[0-9]{10}$/,
+  },
+  email: {
+    type: String,
+    required: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  },
+  gender: {
+    type: String,
+    enum: ["Male", "Female"],
+    required: true,
+  },
 })
-exports.recordModel = mongoose.model("records", recordSchema);
-exports.dummyModel = mongoose.model("dummys", dummySchema);
+exports.recordModel = mongoose.model("record", recordSchema);
+exports.dummyModel = mongoose.model("dummy", dummySchema);
 exports.sellModel = mongoose.model("selldata", sellSchema);
-exports.workerModel = mongoose.model("workers", workerSchema);
+exports.workerModel = mongoose.model("worker", workerSchema);
