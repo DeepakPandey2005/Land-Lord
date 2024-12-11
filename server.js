@@ -14,7 +14,7 @@ server.use(cors());
 server.use(express.json());
 server.use(bodyParser.json());
 server.use(express.urlencoded({ extended: false }));
-server.use("/uploads", express.static(path.join(__dirname, "uploads")));
+server.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
 main().catch((err) => console.log(err));
 async function main() {
   mongoose.connect(process.env.MONGO_URL);
