@@ -21,7 +21,6 @@ const recordSchema = new Schema({
   totalToBePaid: Number,
   documents: Object,
 });
-
 const dummySchema = new Schema({
   cityName: String,
   propertyName: String,

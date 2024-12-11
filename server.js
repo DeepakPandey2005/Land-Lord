@@ -1,9 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 const path = require("path");
-const fs = require("fs");
 const server = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const { router } = require("./routes/record.js");
 const cors = require("cors");
@@ -24,7 +23,12 @@ async function main() {
 
 server.use("/auth", authRouter);
 server.use("/records", ensureAuthenticated, router);
-
+server.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is up and running!",
+  });
+});
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

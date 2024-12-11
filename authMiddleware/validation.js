@@ -40,13 +40,14 @@ const signupValidation = (req, res, next) => {
     // Handle unexpected server errors
     res.status(500).json({
       success: false,
-      message: "Internal Server Error",
+      message: "Internal Server Error !",
     });
   }
 };
 
 const loginValidation = (req, res, next) => {
   try {
+    console.log("Request Body: ", req.body); // Debugging
     const schema = Joi.object({
       email: Joi.string().email().required().messages({
         "string.base": "Email must be a string",
@@ -60,7 +61,7 @@ const loginValidation = (req, res, next) => {
         "string.min": "Password must be at least 8 characters long",
         "string.max": "Password must be less than or equal to 15 characters",
         "any.required": "Password is required",
-      }),
+      })
     });
 
     const { error } = schema.validate(req.body);
@@ -68,15 +69,16 @@ const loginValidation = (req, res, next) => {
     if (error) {
       return res.status(400).json({
         success: false,
-        message: error.details[0].message, // First validation error
+        message: error.details[0].message
       });
     }
 
     next();
   } catch (err) {
+    console.error("Validation Error: ", err.message); // Debugging
     res.status(500).json({
       success: false,
-      message: "Internal Server Error",
+      message: "Internal Server Error"
     });
   }
 };
