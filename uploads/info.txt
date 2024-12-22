@@ -1,1 +1,1 @@
-this folder containes the images and the pdf of the property  
+this folder containes the images and the pdf of the property and after hosting this on render it will restart if no one sent request in 15 mins
